@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+
 
 class PostController extends Controller
 {
@@ -13,6 +15,26 @@ class PostController extends Controller
      */
     public function index()
     {
+        // $newPost=new Post();
+        // $newPost->title='new post3';
+        // $newPost->content='new content';
+        // $newPost->short_content='new showrt content';
+        // $newPost->photo='/storage/new_post.png';
+        // $newPost->save();
+        // return 'succes';
+        // // $posts=Post::where('title','clean code')->first();
+        // // dd($posts);
+
+        // $newPost=Post::create([
+        //     'title'=>'5',
+        //     'short_content'=>'short',
+        //     'content'=>'content123',
+        //     'photo'=>'photo.jpg'
+        // ]);
+
+        $post=Post::find(2);
+        $post->title='new 2023.18:511';
+        $post->update();
         return view('posts.index');
     }
 
@@ -81,4 +103,5 @@ class PostController extends Controller
     {
         //
     }
+    
 }
