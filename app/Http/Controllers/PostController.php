@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Post;
 class PostController extends Controller
 {
     /**
@@ -13,7 +13,31 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('posts.index');
+
+        // $newPost=new Post;
+        // $newPost->title='new post';
+        // $newPost->short_content=' new post short content';
+        // $newPost->content='new post content';
+
+        // $newPost->save();
+
+        // $newPost=Post::create([
+        //     'title'=>'5',
+        //     'short_content'=>'short',
+        //     'content'=>'content 123',
+        //     'photo'=>'avatar.png'
+        // ]); post yaratsh
+            // $post=Post::find(2);
+            // $post->title="uzgartirildi text";
+            // $post->save();
+            // Post::destroy(1);
+            Post::withTrashed()->find(1)->restore();
+
+        return 'success';
+        // $posts=Post::find(1);
+        // dd($posts);
+        // return view('posts.index');
+
     }
 
     /**
