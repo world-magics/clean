@@ -1,9 +1,9 @@
 <x-layouts.main>
     <x-slot:title>
-Blog
+Conference
     </x-slot>
 <x-page-header>
-Blog
+Conference
 </x-page-header>
 
   <!-- Blog Start -->
@@ -11,17 +11,18 @@ Blog
     <div class="container">
         <div class="row align-items-end mb-4">
             <div class="col-lg-6">
-                <h6 class="text-secondary font-weight-semi-bold text-uppercase mb-3">Latest Blog</h6>
-                <h1 class="section-title mb-3">Latest Articles From Our Blog Post</h1>
+                <h6 class="text-secondary font-weight-semi-bold text-uppercase mb-3">Latest Conference</h6>
+                <h1 class="section-title mb-3">Latest Conference From China</h1>
             </div>
             <div class="col-lg-6">
-                <h4 class="font-weight-normal text-muted mb-3">Oxirgi foydalanuvchilar postari postlar barchasi </h4>
+                <h4 class="font-weight-normal text-muted mb-3">Latest Conference In China </h4>
             </div>
         </div>
         <div class="row">
+            @foreach ($posts as $post)
             <div class="col-lg-4 col-md-6 mb-5">
                 <div class="position-relative mb-4">
-                    <img class="img-fluid rounded w-100" src="img/blog-1.jpg" alt="">
+                    <img class="img-fluid rounded w-100" src="{{ asset('img/conf.jpg') }}" alt="">
                     <div class="blog-date">
                         <h4 class="font-weight-bold mb-n1">01</h4>
                         <small class="text-white text-uppercase">Jan</small>
@@ -30,13 +31,15 @@ Blog
                 <div class="d-flex mb-2">
                     <a class="text-secondary text-uppercase font-weight-medium" href="">Admin</a>
                     <span class="text-primary px-2">|</span>
-                    <a class="text-secondary text-uppercase font-weight-medium" href="">Cleaning</a>
+                    <a class="text-secondary text-uppercase font-weight-medium" href="">Conference</a>
                 </div>
-                <h5 class="font-weight-medium mb-2">Rebum lorem eos ipsum diam</h5>
-                <p class="mb-4">Dolor justo sea kasd lorem clita justo no diam amet. Kasd magna dolor amet</p>
-                <a class="btn btn-sm btn-primary py-2" href="">Read More</a>
+                <h5 class="font-weight-medium mb-2">{{ $post->title }}</h5>
+                <p class="mb-4">{{ $post->short_content }}</p>
+                <a class="btn btn-sm btn-primary py-2" href="{{ route('posts.show',['post'=>$post->id]) }}">
+                    More info
+                </a>
             </div>
-
+            @endforeach
             <div class="col-12">
                 <nav aria-label="Page navigation">
                   <ul class="pagination pagination-lg justify-content-center mb-0">

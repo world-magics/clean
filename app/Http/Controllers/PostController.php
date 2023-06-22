@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
-<<<<<<< HEAD
-=======
+use Illuminate\Support\Facades\DB;
 
 
->>>>>>> 72f1f6b4590facbb41141bcb968769b35dd15001
+
 class PostController extends Controller
 {
     /**
@@ -18,7 +17,7 @@ class PostController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
+
 
         // $newPost=new Post;
         // $newPost->title='new post';
@@ -26,7 +25,7 @@ class PostController extends Controller
         // $newPost->content='new post content';
 
         // $newPost->save();
-=======
+
         // $newPost=new Post();
         // $newPost->title='new post3';
         // $newPost->content='new content';
@@ -36,12 +35,12 @@ class PostController extends Controller
         // return 'succes';
         // // $posts=Post::where('title','clean code')->first();
         // // dd($posts);
->>>>>>> 72f1f6b4590facbb41141bcb968769b35dd15001
+
 
         // $newPost=Post::create([
         //     'title'=>'5',
         //     'short_content'=>'short',
-<<<<<<< HEAD
+
         //     'content'=>'content 123',
         //     'photo'=>'avatar.png'
         // ]); post yaratsh
@@ -49,23 +48,36 @@ class PostController extends Controller
             // $post->title="uzgartirildi text";
             // $post->save();
             // Post::destroy(1);
-            Post::withTrashed()->find(1)->restore();
+            // Post::withTrashed()->find(1)->restore();
 
-        return 'success';
+        // return 'success';
         // $posts=Post::find(1);
         // dd($posts);
-        // return view('posts.index');
 
-=======
+
         //     'content'=>'content123',
         //     'photo'=>'photo.jpg'
         // ]);
 
-        $post=Post::find(2);
-        $post->title='new 2023.18:511';
-        $post->update();
-        return view('posts.index');
->>>>>>> 72f1f6b4590facbb41141bcb968769b35dd15001
+        // $post=Post::find(2);
+        // $post->title='new 2023.18:511';
+        // $post->update();
+        // return view('posts.index');
+
+            // $post=DB::table('posts')->get()->pluck('short_content');
+            // $post=DB::table('posts')->WhereIn('id',[2,3])->get();
+            // $post=DB::table('posts')->insert([
+            //     'title'=>'123title',
+            //     'short_content'=>'123short',
+            //     'content'=>'123Content',
+            //     'photo'=>'123photo'
+            // ]);
+            // dd($post);
+            // $post=DB::table('posts')->where('id',3)->get()->dd();
+            // return 'success';
+            $posts=Post::all();
+            return view('posts.index')->with('posts',$posts);
+
     }
 
     /**
@@ -95,9 +107,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return view('posts.show')->with([
+            'post'=>$post,
+            'recent_posts'=>Post::latest()->get()->except($post->id)->take(7),
+
+
+        ]);
     }
 
     /**
