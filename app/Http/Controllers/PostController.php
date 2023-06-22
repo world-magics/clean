@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 72f1f6b4590facbb41141bcb968769b35dd15001
 class PostController extends Controller
 {
     /**
@@ -13,6 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
 
         // $newPost=new Post;
         // $newPost->title='new post';
@@ -20,10 +26,22 @@ class PostController extends Controller
         // $newPost->content='new post content';
 
         // $newPost->save();
+=======
+        // $newPost=new Post();
+        // $newPost->title='new post3';
+        // $newPost->content='new content';
+        // $newPost->short_content='new showrt content';
+        // $newPost->photo='/storage/new_post.png';
+        // $newPost->save();
+        // return 'succes';
+        // // $posts=Post::where('title','clean code')->first();
+        // // dd($posts);
+>>>>>>> 72f1f6b4590facbb41141bcb968769b35dd15001
 
         // $newPost=Post::create([
         //     'title'=>'5',
         //     'short_content'=>'short',
+<<<<<<< HEAD
         //     'content'=>'content 123',
         //     'photo'=>'avatar.png'
         // ]); post yaratsh
@@ -38,6 +56,16 @@ class PostController extends Controller
         // dd($posts);
         // return view('posts.index');
 
+=======
+        //     'content'=>'content123',
+        //     'photo'=>'photo.jpg'
+        // ]);
+
+        $post=Post::find(2);
+        $post->title='new 2023.18:511';
+        $post->update();
+        return view('posts.index');
+>>>>>>> 72f1f6b4590facbb41141bcb968769b35dd15001
     }
 
     /**
@@ -105,4 +133,5 @@ class PostController extends Controller
     {
         //
     }
+    
 }
