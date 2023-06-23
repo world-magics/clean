@@ -98,7 +98,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title'=>'required|max:255',
+            'short_content'=>'required',
+            'content'=>'required',
+                        
+        ]);
+        $post=Post::create([
+            'title'=>$request->title,
+            'short_content'=>$request->short_content,
+            'content'=>$request->content,
+            
+        ]);
+        return redirect()->to('post.index');
+
     }
 
     /**
@@ -123,9 +136,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post, $id)
     {
-        //
+        return view('post.edit',$post->id);
     }
 
     /**
@@ -137,7 +150,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -149,7 +162,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 
 }

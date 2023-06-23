@@ -1,37 +1,57 @@
 <x-layouts.main>
     <x-slot:title>
     Create a conference
-    </x-slot>
+    </x-slot:title>
 <x-page-header>
     New create a conference
 </x-page-header>
 
-    <div class="container py-5">
+    <div class="container">
         <div class="row w-50 py-4">
         <div class="contact-form">
             <div id="success"></div>
-            <form name="sentMessage" id="contactForm" novalidate="novalidate">
+            @if($errors->any())
+            <div class="alert alert-info">
+                <ul>
+                    @foreach($errors->all() as $error)
+                            <li>
+                                
+                                {{$error}}
+                             
+                            </li>
+                    @endforeach
+                </ul>
+            </div>
+                    
+            @endif
+            <form action="{{ route('posts.store') }}" method="POST">
+                @csrf
                 <div class="form-row">
                     <div class="col-sm-6 control-group">
-                        <input type="text" class="form-control p-4" id="name" placeholder="Your Name" required="required"/>
+                        <input type="text" class="form-control p-4" name="title" id="name" value="{{old('title')}}" placeholder="Your Name" />
+                        @error('title')
+                            <p class="help-block text-danger">{{$message}}</p>
+                            <div class="alert alert-danger">{{$message}}</div>
+                        @enderror
                         <p class="help-block text-danger"></p>
                     </div>
+                    
+                        
+                 
+                       
+                  
+                    
                     <div class="col-sm-6 control-group">
-                        <input type="image" class="form-control p-4" id="name" placeholder="Your Name" required="required"/>
-                        <p class="help-block text-danger"></p>
-                    </div>
-                    <div class="col-sm-6 control-group">
-                        <input type="email" class="form-control p-4" id="email" placeholder="Your Email" required="required"/>
+                        <input type="email" value="{{old('email')}}" class="form-control p-4" name="email" placeholder="Your Email" />
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="control-group">
-                    <input type="text" class="form-control p-4" id="subject" placeholder="Subject of Conference" required="required"  />
+                    <input type="text"  class="form-control p-4" name="short_content" value="{{old('short_content')}}" placeholder="Subject of Conference"   />
                     <p class="help-block text-danger"></p>
                 </div>
                 <div class="control-group">
-                    <textarea class="form-control p-4" rows="6" id="message" placeholder="About of Conference type and full object"
-                    required="required">
+                    <textarea value="{{old('content')}}" class="form-control p-4" rows="6" name="content" placeholder="About of Conference type and full object">
                     </textarea>
                     <p class="help-block text-danger"></p>
                 </div>
