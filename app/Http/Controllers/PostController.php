@@ -99,11 +99,15 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-       
+        $path=$request->file('photo')->store('post-photos');
+        // $path=$request->file('photo')->store('post-photos');
+        // $path=$request->file('photo')->store('post-photos');
+        // $path=$request->file('photo')->store('post-photo');
         $post=Post::create([
             'title'=>$request->title,
             'short_content'=>$request->short_content,
             'content'=>$request->content,
+            'photo'=>$path,
             
         ]);
         return redirect()->to('post.index');
@@ -121,9 +125,7 @@ class PostController extends Controller
         return view('posts.show')->with([
             'post'=>$post,
             'recent_posts'=>Post::latest()->get()->except($post->id)->take(7),
-
-
-        ]);
+                                        ]);
     }
 
     /**

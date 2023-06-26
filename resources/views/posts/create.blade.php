@@ -27,22 +27,27 @@
             <form action="{{ route('posts.store') }}" method="POST">
                 @csrf
                 <div class="form-row">
-                    <div class="col-sm-6 control-group">
+                    <div class="col-sm-12 control-group my-3">
                         <input type="text" class="form-control p-4" name="title" id="name" value="{{old('title')}}" placeholder="Your Name" />
                         @error('title')
                             <p class="help-block text-danger">{{$message}}</p>
-                            <div class="alert alert-danger">{{$message}}</div>
                         @enderror
-                        <p class="help-block text-danger"></p>
+                            
+                           
                     </div>
                     
-                        
+                    <div class="col-sm-12 control-group">
+                        <input type="file" class="form-control p-4 my-3" name="photo" id="subject" placeholder="Image for Conference" />
+                        @error('photo')
+                            <p class="help-block text-danger">{{$message}}</p>
+                        @enderror 
+                    </div>   
                  
                        
                   
                     
-                    <div class="col-sm-6 control-group">
-                        <input type="email" value="{{old('email')}}" class="form-control p-4" name="email" placeholder="Your Email" />
+                    <div class="col-sm-12 control-group">
+                        <input type="email" value="{{old('email')}}" class="form-control my-3 p-4" name="email" placeholder="Your Email" />
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
